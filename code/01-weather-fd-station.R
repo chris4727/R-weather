@@ -1,7 +1,6 @@
-#install.packages("pacman")
-
 # Load packages with pacman
 pacman::p_load(pacman, 
+               readr,
                dplyr, 
                ggplot2, 
                httr, 
@@ -10,13 +9,15 @@ pacman::p_load(pacman,
                glue,
                viridis)
 
-library(datasets) # Load base R packages
-
-# Clear packages
-p_unload(all)
-p_unload(viridis, lubridate) # Clear specific packages
-detach("package:datasets", unload = TRUE) # Clear base R packages
-
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
 cat("\014") # Clear console. Same as Ctrl+L
+
+inventory_url <- "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt"
+
+inventory <- read_table(inventory_url,
+           col_names = c("station", "latitude", "longitude", "variable", "start year", "end year"))
+
+# Tacoma latitude and longitude
+tac_lat <- 47.2526 
+tac_lon <- -122.4451
