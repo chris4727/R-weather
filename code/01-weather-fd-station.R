@@ -32,6 +32,8 @@ tac_station <- stations %>%
   distinct(station) %>%      # Only show the station name of the closest station
   pull(station)               # Pull just the value of the station id
 
+seatac_station <- "USW00024233" # Seatac station has more variables going back to 1948
+
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
 cat("\014") # Clear console. Same as Ctrl+L
