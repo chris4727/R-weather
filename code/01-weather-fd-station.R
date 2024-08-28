@@ -26,13 +26,11 @@ tac_station <- stations %>%
          # Gives distance from my_lat/my_lon in km. For miles, remove the 1.609344.
          distance = 1.609344 * 3963 * acos((sin(lat_rad) * sin(my_lat)) + cos(lat_rad) * cos(my_lat) * cos(my_lon - lon_rad))
          ) %>%  
-  filter(start_year < 1988 & end_year > 2023) %>%
-  arrange(distance) %>% 
-  top_n(n = -1, distance) %>%
-  distinct(station) #%>%
-  pull(station)
-  
-my_station
+  filter(start_year < 1988 & end_year >= 2024) %>%
+  arrange(distance) %>%
+  top_n(n = -1, distance) %>% # Find the closest station that meets the above criteria
+  distinct(station) %>%      # Only show the station name of the closest station
+  pull(station)               # Pull just the value of the station id
 
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
