@@ -19,8 +19,8 @@ stations <- read_table(stations_url,
 stations
 
 # Tacoma latitude and longitude
-tac_lat <- 47.2526 
-tac_lon <- -122.4451
+my_lat <- 47.2526 * 2 * pi/360
+my_lon <- -122.4451 * 2 * pi/360
 
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
