@@ -11,11 +11,12 @@ pacman::p_load(pacman,
                glue,
                viridis)
 
+stations_url <- "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt"
 
-inventory_url <- "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt"
+stations <- read_table(stations_url,
+           col_names = c("station", "latitude", "longitude", "variable", "start_year", "end_year"))
 
-inventory <- read_table(inventory_url,
-           col_names = c("station", "latitude", "longitude", "variable", "start year", "end year"))
+stations
 
 # Tacoma latitude and longitude
 tac_lat <- 47.2526 
