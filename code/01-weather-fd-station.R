@@ -20,7 +20,7 @@ stations <- read_table(stations_url,
 my_lat <- 47.2526 * 2 * pi/360    # Convert latitude to radians
 my_lon <- -122.4451 * 2 * pi/360  # Convert longitude to radians
 
-tac_station <- stations %>% 
+tacoma_station <- stations %>% 
   mutate(lat_rad = latitude * 2 * pi/360, # Convert stations lat/long to radians
          lon_rad = longitude * 2 * pi/360,
          # Gives distance from my_lat/my_lon in km. For miles, remove the 1.609344.
