@@ -34,6 +34,9 @@ tacoma_station <- stations %>%
 
 seatac_station <- "USW00024233" # Seatac station has more variables going back to 1948
 
+seatac_url <- glue("https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_station/{seatac_station}.csv.gz")
+tacoma_url <- glue("https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_station/{tacoma_station}.csv.gz")
+
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
 cat("\014") # Clear console. Same as Ctrl+L
