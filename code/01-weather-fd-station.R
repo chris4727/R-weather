@@ -37,6 +37,17 @@ seatac_station <- "USW00024233" # Seatac station has more variables going back t
 seatac_url <- glue("https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_station/{seatac_station}.csv.gz")
 tacoma_url <- glue("https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_station/{tacoma_station}.csv.gz")
 
+# Variable descriptions https://www.ncei.noaa.gov/pub/data/ghcn/daily/readme.txt
+seatac_weather <- read_csv(seatac_url,
+                          col_names = c("station", "date", "variable", "value", "a", "b", "c", "d")) %>%
+  select(date, variable, value) %>%
+  pivot_wider(names_from = "variable", values_from="value",
+              values_fill = 0) %>%
+  select(date, TMAX, TMIN, PRCP, SNOW, SNWD) %>%
+  mutate(date = ymd(date),# Snow and Snow Depth are already in mm.
+         TMAX = TMAX/10,  # Convert TMAX to C (from 0.1C)
+         TMIN = TMIN/10,  # Convert TMIN to C (from 0.1C)
+         PRCP = PRCP/10)  # Convert PRCP to mm.
 # Cleanup the environment
 dev.off()   # Clear plots if there is one
 cat("\014") # Clear console. Same as Ctrl+L
